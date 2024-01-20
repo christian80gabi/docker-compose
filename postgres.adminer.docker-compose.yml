@@ -1,0 +1,35 @@
+# ---------------------------------------- #
+#              DOCKER COMPOSE              #
+# ---------------------------------------- #
+#            PotgreSQL + adminer           #
+# ---------------------------------------- #
+
+version: '3.8'
+
+services:
+  db:
+    container_name: postgresql_db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: christian80gabi
+      POSTGRES_PASSWORD: christian80gabi.password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./.data:/var/lib/postgresql/data
+  
+  pgadmin:
+    container_name: adminer_container
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+volumes:
+  data: { }
+
+networks:
+  default:
+    name: postgresql_default

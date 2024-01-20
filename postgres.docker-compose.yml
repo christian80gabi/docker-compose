@@ -1,0 +1,27 @@
+# ---------------------------------------- #
+#              DOCKER COMPOSE              #
+# ---------------------------------------- #
+#            PotgreSQL (Alpine)            #
+# ---------------------------------------- #
+
+version: '3.8'
+
+services:
+  db:
+    container_name: postgresql_db
+    image: postgres:alpine
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: christian80gabi
+      POSTGRES_PASSWORD: christian80gabi.password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./.data:/var/lib/postgresql/data
+
+volumes:
+  data: { }
+
+networks:
+  default:
+    name: postgresql_default
